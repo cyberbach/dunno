@@ -1,0 +1,118 @@
+
+pack.png
+size: 1024,512
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+aim
+  rotate: false
+  xy: 874, 440
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+attack
+  rotate: false
+  xy: 518, 248
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+attack2
+  rotate: false
+  xy: 260, 248
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+button
+  rotate: false
+  xy: 776, 342
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+cloud1
+  rotate: false
+  xy: 776, 408
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+cloud2
+  rotate: false
+  xy: 2, 20
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+cloud3
+  rotate: false
+  xy: 260, 150
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+pad
+  rotate: false
+  xy: 2, 248
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+particle
+  rotate: false
+  xy: 358, 214
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+starpart
+  rotate: false
+  xy: 100, 84
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+start
+  rotate: false
+  xy: 2, 118
+  size: 256, 128
+  orig: 256, 128
+  offset: 0, 0
+  index: -1
+tri1
+  rotate: false
+  xy: 260, 132
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+tri2
+  rotate: false
+  xy: 776, 324
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+tri3
+  rotate: false
+  xy: 842, 390
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+tri4
+  rotate: false
+  xy: 874, 422
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+tri5
+  rotate: false
+  xy: 2, 2
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
