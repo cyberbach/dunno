@@ -8,8 +8,8 @@ public final class DEBUG {
     public static boolean WINDOWS      = true;
     public static boolean SETTINGS     = false;
     public static boolean ENGLISH_TEXT = false;
-    public static boolean FPS          = false;
-    public static boolean GAME_MASTER  = true;
+    public static boolean FPS          = true;
+    public static boolean GAME_MASTER  = false;
 
     // 2d screen info
     public static boolean BASE_SCREEN = false;
