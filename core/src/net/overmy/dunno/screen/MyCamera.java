@@ -45,6 +45,8 @@ public class MyCamera {
 
         light = new DirectionalLight();
         light.set( Core.AMBIENT_COLOR, 0, 0, 0 );
+
+        filteredPosition.set( 0, 4, -6 );
     }
 
 

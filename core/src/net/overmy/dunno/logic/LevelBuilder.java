@@ -67,4 +67,28 @@ class LevelBuilder {
                                           float x, float y, float z, float size ) {
         return new TriggerObject( trigger, new Vector3( x, y, z ), size );
     }
+
+
+    public Array<GameObject> LEVEL11 () {
+        Array< GameObject > objects = new Array< GameObject >();
+
+        ScriptBuilder script = new ScriptBuilder();
+
+        objects.add( CreateNPC( -4.7762394f, 3.2992003f, -7.8481812f,
+                                ModelAsset.BALL1,
+                                script.BALL1_MOVE_ON_LEVEL1(),
+                                SoundAsset.NPC_STEP ) );
+
+        objects.add( CreateNPC( -4.150119f, 4.0991317f, -25.528162f,
+                                ModelAsset.MONSTER1,
+                                script.MONSTER1_MOVE_ON_LEVEL1(),
+                                SoundAsset.NPC_STEP ) );
+
+        objects.add( CreateNPC( -18.826994f, 4.1936598f, 10.558444f,
+                                ModelAsset.DRAKON1,
+                                script.DRAKON1_MOVE_ON_LEVEL4(),
+                                SoundAsset.PLAYER_STEP ) );
+
+        return objects;
+    }
 }

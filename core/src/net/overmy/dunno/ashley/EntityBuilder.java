@@ -8,6 +8,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g3d.ModelInstance;
+import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute;
+import com.badlogic.gdx.graphics.g3d.attributes.TextureAttribute;
 import com.badlogic.gdx.graphics.g3d.decals.Decal;
 import com.badlogic.gdx.graphics.g3d.model.Animation;
 import com.badlogic.gdx.graphics.g3d.utils.AnimationController;
@@ -18,6 +20,7 @@ import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 
@@ -47,9 +50,12 @@ import net.overmy.dunno.logic.NPCAction;
 import net.overmy.dunno.logic.collectable.Collectable;
 import net.overmy.dunno.logic.objects.GameObject;
 import net.overmy.dunno.resource.FontAsset;
+import net.overmy.dunno.resource.IMG;
 import net.overmy.dunno.resource.ModelAsset;
 import net.overmy.dunno.resource.SoundAsset;
 import net.overmy.dunno.resource.TextAsset;
+
+import javax.swing.text.AttributeSet;
 
 /*
         Created by Andrey Mikheev on 05.06.2018
@@ -125,6 +131,11 @@ public class EntityBuilder {
 
     public Entity createGround ( ModelAsset levelAsset ) {
         ModelInstance modelInstance = levelAsset.get();
+
+        modelInstance.materials.get(0).clear();
+        TextureAttribute diffuse = TextureAttribute.createDiffuse(IMG.WORLD_TEXTURE.getRegion());
+        modelInstance.materials.get(0).set( diffuse );
+
         ModelInstance physicalInstance = levelAsset.getSimple();
 
         PhysicalBuilder physicalBuilder = new PhysicalBuilder()

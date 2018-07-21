@@ -16,6 +16,7 @@ public enum IMG {
     BUTTON( "button" ),
     AIM( "aim" ),
 
+    WORLD_TEXTURE( "world" ),
     START_BUTTON( "start" ),
 
     ATTACK2_BUTTON( "attack2" ),
