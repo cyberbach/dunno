@@ -45,7 +45,8 @@ public final class DynamicLevels {
         Array< Level > levelArray = new Array< Level >();
 
         LevelBuilder objects = new LevelBuilder();
-
+        levelArray.add( newLevel( "0" ) );
+/*
         levelArray.add( newLevel( "0, 3, 1" ) );
         levelArray.add( newLevel( "1, 0, 3, 2" ) );
         levelArray.add( newLevel( "2, 1, 3, 5, 6, 17, 14" ) );
@@ -162,7 +163,7 @@ public final class DynamicLevels {
         levelArray.add( newLevel( "113, 114, 99, 112, 111" ) );
         levelArray.add( newLevel( "114, 90, 99, 113" ) );
         levelArray.add( newLevel( "115, 17, 6, 20, 22, 18" ) );
-
+*/
         levels = new ImmutableArray< Level >( levelArray );
     }
 
@@ -186,7 +187,7 @@ public final class DynamicLevels {
 
     public static void init () {
         // FIXME
-        current = 11;//Settings.START_LOCATION.getInteger();
+        current = 0;//Settings.START_LOCATION.getInteger();
 
         currentConnections = null;
         previousConnections = null;

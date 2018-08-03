@@ -128,7 +128,7 @@ public class LoadingScreen extends BaseScreen {
         ModelAsset.MY_PLAYER.build();
 
         Entity playerEntity = new EntityBuilder().createPlayer( ModelAsset.MY_PLAYER,
-                                                                new Vector3( 0, 5, -6 ) );
+                                                                new Vector3( 0, 5, 0 ) );
         AshleyWorld.getEngine().addEntity( playerEntity );
     }
 

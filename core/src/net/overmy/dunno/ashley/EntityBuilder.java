@@ -136,6 +136,7 @@ public class EntityBuilder {
         TextureAttribute diffuse = TextureAttribute.createDiffuse(IMG.WORLD_TEXTURE.getRegion());
         modelInstance.materials.get(0).set( diffuse );
 
+
         ModelInstance physicalInstance = levelAsset.getSimple();
 
         PhysicalBuilder physicalBuilder = new PhysicalBuilder()
