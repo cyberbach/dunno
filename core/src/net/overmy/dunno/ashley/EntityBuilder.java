@@ -8,7 +8,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g3d.ModelInstance;
-import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute;
 import com.badlogic.gdx.graphics.g3d.attributes.TextureAttribute;
 import com.badlogic.gdx.graphics.g3d.decals.Decal;
 import com.badlogic.gdx.graphics.g3d.model.Animation;
@@ -20,7 +19,6 @@ import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 
@@ -29,6 +27,7 @@ import net.overmy.dunno.ashley.component.AnimationComponent;
 import net.overmy.dunno.ashley.component.BoundingBoxComponent;
 import net.overmy.dunno.ashley.component.CharacterStateComponent;
 import net.overmy.dunno.ashley.component.CollectableComponent;
+import net.overmy.dunno.ashley.component.DoorComponent;
 import net.overmy.dunno.ashley.component.GroundedComponent;
 import net.overmy.dunno.ashley.component.LevelIDComponent;
 import net.overmy.dunno.ashley.component.LevelObjectComponent;
@@ -36,9 +35,8 @@ import net.overmy.dunno.ashley.component.LifeComponent;
 import net.overmy.dunno.ashley.component.ModelComponent;
 import net.overmy.dunno.ashley.component.MyPlayerComponent;
 import net.overmy.dunno.ashley.component.NPCComponent;
-import net.overmy.dunno.ashley.component.PhysicalComponent;
 import net.overmy.dunno.ashley.component.RemoveByTimeComponent;
-import net.overmy.dunno.ashley.component.SoundWalkComponent;
+import net.overmy.dunno.ashley.component.SoundComponent;
 import net.overmy.dunno.ashley.component.Stage2DGroupComponent;
 import net.overmy.dunno.ashley.component.TYPE_OF_ENTITY;
 import net.overmy.dunno.ashley.component.TypeOfEntityComponent;
@@ -54,8 +52,6 @@ import net.overmy.dunno.resource.IMG;
 import net.overmy.dunno.resource.ModelAsset;
 import net.overmy.dunno.resource.SoundAsset;
 import net.overmy.dunno.resource.TextAsset;
-
-import javax.swing.text.AttributeSet;
 
 /*
         Created by Andrey Mikheev on 05.06.2018
@@ -132,10 +128,9 @@ public class EntityBuilder {
     public Entity createGround ( ModelAsset levelAsset ) {
         ModelInstance modelInstance = levelAsset.get();
 
-        modelInstance.materials.get(0).clear();
-        TextureAttribute diffuse = TextureAttribute.createDiffuse(IMG.WORLD_TEXTURE.getRegion());
-        modelInstance.materials.get(0).set( diffuse );
-
+        modelInstance.materials.get( 0 ).clear();
+        TextureAttribute diffuse = TextureAttribute.createDiffuse( IMG.WORLD_TEXTURE.getRegion() );
+        modelInstance.materials.get( 0 ).set( diffuse );
 
         ModelInstance physicalInstance = levelAsset.getSimple();
 
@@ -164,12 +159,16 @@ public class EntityBuilder {
     public Entity createPlayer ( ModelAsset myPlayer, Vector3 position ) {
         ModelInstance modelInstance = myPlayer.get();
 
+        modelInstance.materials.get( 0 ).clear();
+        TextureAttribute diffuse = TextureAttribute.createDiffuse( IMG.WORLD_TEXTURE.getRegion() );
+        modelInstance.materials.get( 0 ).set( diffuse );
+
         PhysicalBuilder physicalBuilder = new PhysicalBuilder()
                 .setModelInstance( modelInstance )
                 .defaultMotionState()
                 .setMass( 20.0f )
                 .setPosition( position )
-                .capsuleShape( 0.5f, 1.0f )
+                .capsuleShape()
                 .setCollisionFlag( CollisionFlags.CF_CHARACTER_OBJECT )
                 .setCallbackFlag( BulletWorld.PLAYER_FLAG )
                 .setCallbackFilter( BulletWorld.PLAYER_FILTER )
@@ -195,84 +194,24 @@ public class EntityBuilder {
 
         ModelInstance modelInstance = modelAsset.get();
 
-        SoundWalkComponent walkSound = new SoundWalkComponent();
-        walkSound.walk = walkSoundAsset.get();
+        modelInstance.materials.get( 0 ).clear();
+        TextureAttribute diffuse = TextureAttribute.createDiffuse( IMG.WORLD_TEXTURE.getRegion() );
+        modelInstance.materials.get( 0 ).set( diffuse );
 
-        PhysicalBuilder physicalBuilderNPC;
+        SoundComponent walkSound = new SoundComponent();
+        walkSound.snd = walkSoundAsset.get();
 
-        // FIXME refactor
-
-        if ( modelAsset.equals( ModelAsset.SPIDER1 ) ) {
-            physicalBuilderNPC = new PhysicalBuilder()
-                    .setModelInstance( modelInstance )
-                    .defaultMotionState()
-                    .setPosition( position )
-                    .setMass( 60.0f )
-                    .capsuleShape( 1.5f, 0 )
-                    .setCollisionFlag( CollisionFlags.CF_CHARACTER_OBJECT )
-                    .setCallbackFlag( BulletWorld.NPC_FLAG )
-                    .setCallbackFilter( BulletWorld.ENEMY_FILTER )
-                    .disableRotation()
-                    .disableDeactivation();
-            //initSound( walkSound, SoundAsset.NPC_STEP );
-        } else if ( modelAsset.equals( ModelAsset.SPIDER1 ) ) {
-            physicalBuilderNPC = new PhysicalBuilder()
-                    .setModelInstance( modelInstance )
-                    .defaultMotionState()
-                    .setPosition( position )
-                    .setMass( 60.0f )
-                    .capsuleShape( 1.0f, 1 )
-                    .setCollisionFlag( CollisionFlags.CF_CHARACTER_OBJECT )
-                    .setCallbackFlag( BulletWorld.NPC_FLAG )
-                    .setCallbackFilter( BulletWorld.ENEMY_FILTER )
-                    .disableRotation()
-                    .disableDeactivation();
-            //initSound( walkSound, SoundAsset.NPC_STEP );
-        } else if ( modelAsset.equals( ModelAsset.MONSTER1 ) ) {
-            physicalBuilderNPC = new PhysicalBuilder()
-                    .setModelInstance( modelInstance )
-                    .defaultMotionState()
-                    .setPosition( position )
-                    .setMass( 60.0f )
-                    .capsuleShape( 1.5f, 1.5f )
-                    .setCollisionFlag( CollisionFlags.CF_CHARACTER_OBJECT )
-                    .setCallbackFlag( BulletWorld.NPC_FLAG )
-                    .setCallbackFilter( BulletWorld.ENEMY_FILTER )
-                    .disableRotation()
-                    .disableDeactivation();
-            //initSound( walkSound, SoundAsset.NPC_STEP );
-        } else if ( modelAsset.equals( ModelAsset.DRAKON1 ) ) {
-            physicalBuilderNPC = new PhysicalBuilder()
-                    .setModelInstance( modelInstance )
-                    .defaultMotionState()
-                    .setPosition( position )
-                    .setMass( 60.0f )
-                    .capsuleShape( 1.5f, 1.0f )
-                    .setCollisionFlag( CollisionFlags.CF_CHARACTER_OBJECT )
-                    .setCallbackFlag( BulletWorld.NPC_FLAG )
-                    .setCallbackFilter( BulletWorld.ENEMY_FILTER )
-                    .disableRotation()
-                    .disableDeactivation();
-            //initSound( walkSound, SoundAsset.PLAYER_DAMAGE );
-        } else {
-            physicalBuilderNPC = new PhysicalBuilder()
-                    .setModelInstance( modelInstance )
-                    .defaultMotionState()
-                    .setPosition( position )
-                    .setMass( 60.0f )
-                    .capsuleShape()
-                    .setCollisionFlag( CollisionFlags.CF_CHARACTER_OBJECT )
-                    .setCallbackFlag( BulletWorld.NPC_FLAG )
-                    .setCallbackFilter( BulletWorld.ENEMY_FILTER )
-                    .disableRotation()
-                    .disableDeactivation();
-            //initSound( walkSound, SoundAsset.NPC_STEP );
-        }
-
-        PhysicalComponent physicalComponent = physicalBuilderNPC.buildPhysicalComponent();
-        physicalComponent.body.setRollingFriction( 0.1f );
-        physicalComponent.body.setFriction( 0.1f );
-        physicalComponent.body.setSpinningFriction( 0.1f );
+        PhysicalBuilder physicalBuilder = new PhysicalBuilder()
+                .setModelInstance( modelInstance )
+                .defaultMotionState()
+                .setMass( 20.0f )
+                .setPosition( position )
+                .capsuleShape()
+                .setCollisionFlag( CollisionFlags.CF_CHARACTER_OBJECT )
+                .setCallbackFlag( BulletWorld.PLAYER_FLAG )
+                .setCallbackFilter( BulletWorld.PLAYER_FILTER )
+                .disableDeactivation()
+                .disableRotation();
 
         Entity entity = new Entity();
         entity.add( ModelComponentFromInstance( modelInstance ) );
@@ -280,9 +219,45 @@ public class EntityBuilder {
         entity.add( TypeComponent( TYPE_OF_ENTITY.NPC ) );
         entity.add( life( 100.0f, 3, 2 ) );
         entity.add( NPC( actionArray, 5, null ) );
-        entity.add( physicalComponent );
+        entity.add( physicalBuilder.buildPhysicalComponent() );
         entity.add( walkSound );
         entity.add( CharacterState() );
+
+        return entity;
+    }
+
+
+    public Entity createDoor ( Vector3 position, float from, float to,
+                               ModelAsset modelAsset,
+                               Item key,
+                               SoundAsset walkSoundAsset ) {
+
+        ModelInstance modelInstance = modelAsset.get();
+        //ModelInstance physicInstance = modelAsset.getSimple();
+
+        modelInstance.materials.get( 0 ).clear();
+        TextureAttribute diffuse = TextureAttribute.createDiffuse( IMG.WORLD_TEXTURE.getRegion() );
+        modelInstance.materials.get( 0 ).set( diffuse );
+
+        SoundComponent doorSound = new SoundComponent();
+        doorSound.snd = walkSoundAsset.get();
+
+        PhysicalBuilder physicalBuilder = new PhysicalBuilder()
+                .setModelInstance( modelInstance )
+                .defaultMotionState()
+                .setPosition( position )
+                .zeroMass()
+                .hullShape()
+                .setCollisionFlag( CollisionFlags.CF_KINEMATIC_OBJECT )
+                .setCallbackFlag( BulletWorld.DOOR_FLAG )
+                .setCallbackFilter( BulletWorld.PLAYER_FILTER );
+
+        Entity entity = new Entity();
+        entity.add( ModelComponentFromInstance( modelInstance ) );
+        entity.add( TypeComponent( TYPE_OF_ENTITY.DOOR ) );
+        entity.add( Door( key, position, from, to ) );
+        entity.add( physicalBuilder.buildPhysicalComponent() );
+        entity.add( doorSound );
 
         return entity;
     }
@@ -299,8 +274,7 @@ public class EntityBuilder {
                 .setCollisionFlag( CollisionFlags.CF_NO_CONTACT_RESPONSE )
                 .setCallbackFlag( BulletWorld.COLLECTABLE_FLAG )
                 .setCallbackFilter( BulletWorld.PLAYER_FLAG )
-                .setPosition( position )
-                .disableDeactivation();
+                .setPosition( position );
 
         Entity entity = new Entity();
         entity.add( physicalBuilderLADDER.buildPhysicalComponent() );
@@ -310,6 +284,35 @@ public class EntityBuilder {
 
         return entity;
     }
+
+/*
+
+    public Entity createDoor ( GameObject gameObject,
+                               Vector3 position, Item item, float from, float to ) {
+        ModelAsset doorAsset = (ModelAsset) gameObject.getAssets().first();
+
+        ModelInstance instance = doorAsset.get();
+        ModelInstance physics = doorAsset.getSimple();
+
+        PhysicalBuilder physicalBuilder = new PhysicalBuilder()
+                .setModelInstance( physics )
+                .setPosition( position )
+                .defaultMotionState()
+                .zeroMass()
+                .hullShape()
+                .setCollisionFlag( CollisionFlags.CF_KINEMATIC_OBJECT )
+                .setCallbackFlag( BulletWorld.DOOR_FLAG )
+                .setCallbackFilter( BulletWorld.PLAYER_FLAG );
+
+        Entity entity = new Entity();
+        entity.add( TypeComponent( TYPE_OF_ENTITY.DOOR ) );
+        entity.add( ModelComponentFromInstance( instance ) );
+        entity.add( Door( item, from, to ) );
+        entity.add( physicalBuilder.buildPhysicalComponent() );
+
+        return entity;
+    }
+*/
 
 
     private LifeComponent life ( float newLifeValue, float heightOffset, float width ) {
@@ -329,6 +332,17 @@ public class EntityBuilder {
         lifeComponent.decal = Decal.newDecal( decalSize, decalSize, regionRed, false );
 
         return lifeComponent;
+    }
+
+
+    private DoorComponent Door ( Item key, Vector3 pos, float from, float to ) {
+        DoorComponent doorComponent = new DoorComponent();
+        doorComponent.key = key;
+        doorComponent.startAngle = from;
+        doorComponent.currentAngle = to;
+        doorComponent.endAngle = to;
+        doorComponent.position = new Vector3( pos );
+        return doorComponent;
     }
 
 

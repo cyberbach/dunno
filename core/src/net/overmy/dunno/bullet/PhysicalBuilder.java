@@ -159,6 +159,17 @@ public class PhysicalBuilder {
         bodyShape.calculateLocalInertia( mass, inertia );
         return this;
     }
+/*
+
+    public PhysicalBuilder boxShape ( float x, float y, float z ) {
+        Vector3 boxSize = new Vector3();
+        boxSize.set( x, y, z );
+
+        bodyShape = new btBoxShape( boxSize );
+        bodyShape.calculateLocalInertia( mass, inertia );
+        return this;
+    }
+*/
 
 
     public PhysicalBuilder hullShape () {

@@ -16,7 +16,7 @@ import net.overmy.dunno.ashley.MyMapper;
 import net.overmy.dunno.ashley.component.AnimationComponent;
 import net.overmy.dunno.ashley.component.CharacterStateComponent;
 import net.overmy.dunno.ashley.component.NPCComponent;
-import net.overmy.dunno.ashley.component.SoundWalkComponent;
+import net.overmy.dunno.ashley.component.SoundComponent;
 import net.overmy.dunno.ashley.component.TextDecalComponent;
 import net.overmy.dunno.logic.CHARACTER_STATE;
 import net.overmy.dunno.logic.NPCAction;
@@ -58,8 +58,8 @@ public class NPCSystem extends IteratingSystem {
         btRigidBody body = MyMapper.PHYSICAL.get( entity ).body;
         body.getWorldTransform().getTranslation( position );
 
-        SoundWalkComponent soundWalkComponent = MyMapper.WALK_SOUND.get( entity );
-        SoundByState( soundWalkComponent, npcState );
+        SoundComponent soundComponent = MyMapper.WALK_SOUND.get( entity );
+        SoundByState( soundComponent, npcState );
 
         // работа со скриптом поведения персонажа - переключает состояния персонажа NPC
         ProcessScriptAndChangeStates( npcComponent, npcState, needToSkip );
@@ -71,7 +71,7 @@ public class NPCSystem extends IteratingSystem {
     }
 
 
-    private void SoundByState ( SoundWalkComponent soundWalkComponent,
+    private void SoundByState ( SoundComponent soundComponent,
                                 CharacterStateComponent npcState ) {
 
         float MAX_LISTEN_DISTANCE = 20.0f;
@@ -81,13 +81,13 @@ public class NPCSystem extends IteratingSystem {
         float distance = MAX_LISTEN_DISTANCE - positionForSoundDistance.sub( playerPosition ).len();
         float walkVolume = distance < MAX_LISTEN_DISTANCE ? distance / MAX_LISTEN_DISTANCE : 0;
 
-        long soundID = soundWalkComponent.id;
+        long soundID = soundComponent.id;
         switch ( npcState.state ) {
             case IDLE:
-                soundWalkComponent.walk.setVolume( soundID, 0.0f );
+                soundComponent.snd.setVolume( soundID, 0.0f );
                 break;
             default:
-                soundWalkComponent.walk.setVolume( soundID, walkVolume );
+                soundComponent.snd.setVolume( soundID, walkVolume );
                 break;
         }
     }

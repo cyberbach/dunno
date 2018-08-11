@@ -1,63 +1,63 @@
 
 pack.png
-size: 2048,512
+size: 1024,1024
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
 aim
   rotate: false
-  xy: 1034, 342
+  xy: 260, 182
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 attack
   rotate: false
-  xy: 776, 248
+  xy: 260, 248
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
   index: -1
 attack2
   rotate: false
-  xy: 260, 248
+  xy: 516, 762
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
   index: -1
 button
   rotate: false
-  xy: 1132, 440
+  xy: 774, 856
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 cloud1
   rotate: false
-  xy: 260, 150
+  xy: 2, 20
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 cloud2
   rotate: false
-  xy: 1034, 408
+  xy: 774, 922
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 cloud3
   rotate: false
-  xy: 2, 20
+  xy: 516, 664
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 materials
   rotate: false
-  xy: 518, 248
-  size: 256, 256
-  orig: 256, 256
+  xy: 2, 506
+  size: 512, 512
+  orig: 512, 512
   offset: 0, 0
   index: -1
 pad
@@ -69,14 +69,14 @@ pad
   index: -1
 particle
   rotate: false
-  xy: 100, 84
+  xy: 872, 986
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 starpart
   rotate: false
-  xy: 358, 214
+  xy: 516, 630
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
@@ -90,35 +90,35 @@ start
   index: -1
 tri1
   rotate: false
-  xy: 2, 2
+  xy: 614, 744
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 tri2
   rotate: false
-  xy: 260, 132
+  xy: 2, 2
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 tri3
   rotate: false
-  xy: 1034, 324
+  xy: 100, 100
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 tri4
   rotate: false
-  xy: 1100, 390
+  xy: 260, 164
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 tri5
   rotate: false
-  xy: 1132, 422
+  xy: 326, 230
   size: 16, 16
   orig: 16, 16
   offset: 0, 0

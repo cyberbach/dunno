@@ -64,7 +64,11 @@ public class MyPlayerSystem extends IteratingSystem {
             playerState.nextState = CHARACTER_STATE.IDLE;
             speedOfMovement = 0;
         } else {
-            playerState.nextState = CHARACTER_STATE.WALK;
+            if ( direction.len() < 0.5f ) {
+                playerState.nextState = CHARACTER_STATE.WALK;
+            } else {
+                playerState.nextState = CHARACTER_STATE.RUN;
+            }
             speedOfMovement = direction.len() * 10.0f;
 
             direction.nor();
@@ -98,14 +102,34 @@ public class MyPlayerSystem extends IteratingSystem {
 
     private void changeAnimationFromState ( AnimationComponent component,
                                             CharacterStateComponent playerState ) {
-        final float animationSpeed = 2.0f;
-
         if ( !playerState.nextState.equals( playerState.state ) ) {
-            playAnimation( component, playerState.nextState.ordinal(), animationSpeed );
+            float nextSpeed = speedFromState( playerState.nextState );
+            playAnimation( component, playerState.nextState.ordinal(), nextSpeed );
             playerState.state = playerState.nextState;
         }
 
+        float animationSpeed = speedFromState( playerState.state );
         queueAnimation( component, playerState.nextState.ordinal(), animationSpeed );
+    }
+
+
+    private float speedFromState ( CHARACTER_STATE state ) {
+        switch ( state ) {
+            case IDLE:
+                return 1.0f;
+            case WALK:
+                return 2.0f;
+            case RUN:
+                return 3.0f;
+            case ATTACK:
+                break;
+            case HURT:
+                break;
+            case DIE:
+                break;
+        }
+
+        return 2.0f;
     }
 
 

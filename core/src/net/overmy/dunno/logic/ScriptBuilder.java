@@ -22,17 +22,14 @@ public class ScriptBuilder {
     public ImmutableArray< NPCAction > MONSTER1_MOVE_ON_LEVEL1 () {
         Array< NPCAction > queue = new Array< NPCAction >();
 
-        queue.add( wait( 1.7094381f ) );
-        queue.add( move( -4.150119f, -25.528162f ) );
-        queue.add( wait( 1.5601501f ) );
-        queue.add( move( -0.636255f, -25.021969f ) );
-        queue.add( wait( 0.66470724f ) );
-        queue.add( move( -4.65832f, -24.274364f ) );
-        queue.add( wait( 0.98272675f ) );
-        queue.add( move( -11.959057f, -17.231773f ) );
-        queue.add( wait( 1.5684116f ) );
-        //queue.add( hunt() );
-        queue.add( move( -3.1729476f, -20.375227f ) );
+        queue.add( wait( 0.72312486f ) );
+        queue.add( move(3.8268163f, -7.757905f) );
+        queue.add( wait( 2.2856145f ) );
+        queue.add( move(2.1878328f, -14.569862f) );
+        queue.add( wait( 2.3120408f ) );
+        queue.add( move(8.62124f, -15.510583f) );
+        queue.add( wait( 0.70122206f ) );
+        queue.add( move(6.853693f, -13.947132f) );
 
         return new ImmutableArray< NPCAction >( queue );
     }
@@ -41,13 +38,15 @@ public class ScriptBuilder {
     public ImmutableArray< NPCAction > DRAKON1_MOVE_ON_LEVEL4 () {
         Array< NPCAction > queue = new Array< NPCAction >();
 
-        queue.add( wait( 0.6470083f ) );
-        queue.add( move( -18.826994f, 10.558444f ) );
-        queue.add( wait( 2.3403277f ) );
-        queue.add( move( -22.63045f, 14.187615f ) );
-        queue.add( wait( 1.9916551f ) );
-        //queue.add( hunt() );
-        queue.add( move( -17.274563f, 20.574572f ) );
+        queue.add( wait( 0.97020906f ) );
+        queue.add( hunt() );
+        queue.add( move(-4.746273f, -12.4075165f) );
+        queue.add( wait( 2.3229995f ) );
+        queue.add( hunt() );
+        queue.add( move(-5.668497f, -17.470942f) );
+        queue.add( wait( 1.3339603f ) );
+        queue.add( hunt() );
+        queue.add( move(-1.5481507f, -16.094292f) );
 
         return new ImmutableArray< NPCAction >( queue );
     }

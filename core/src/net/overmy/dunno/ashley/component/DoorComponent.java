@@ -7,10 +7,17 @@ package net.overmy.dunno.ashley.component;
  */
 
 
+import com.badlogic.gdx.math.Vector3;
+
+import net.overmy.dunno.logic.Item;
+
 public class DoorComponent extends ItemComponent {
     public float startAngle;
     public float endAngle;
     public float currentAngle;
+    public Vector3 position;
+
+    public Item key;
     /*
         Item itemForOpenDoor
 

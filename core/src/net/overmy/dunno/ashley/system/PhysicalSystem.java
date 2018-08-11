@@ -49,12 +49,12 @@ public class PhysicalSystem extends IteratingSystem {
 
     @Override
     protected void processEntity ( Entity entity, float delta ) {
-        if ( !MyMapper.MODEL.has( entity ) ) {
+        if ( !MyMapper.MODEL.has( entity ) || MyMapper.DOOR.has( entity ) ) {
             return;
         }
 
-        final btRigidBody btRigidBody = MyMapper.PHYSICAL.get( entity ).body;
-        final Matrix4 transform = btRigidBody.getWorldTransform();
+        btRigidBody btRigidBody = MyMapper.PHYSICAL.get( entity ).body;
+        Matrix4 transform = btRigidBody.getWorldTransform();
         MyMapper.MODEL.get( entity ).modelInstance.transform.set( transform );
         //MyMapper.MODEL.get( entity ).modelInstance.calculateTransforms();
     }

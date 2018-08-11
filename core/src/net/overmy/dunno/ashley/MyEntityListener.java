@@ -14,7 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.Group;
 import net.overmy.dunno.DEBUG;
 import net.overmy.dunno.ashley.component.PhysicalBVHComponent;
 import net.overmy.dunno.ashley.component.PhysicalComponent;
-import net.overmy.dunno.ashley.component.SoundWalkComponent;
+import net.overmy.dunno.ashley.component.SoundComponent;
 import net.overmy.dunno.bullet.BulletWorld;
 import net.overmy.dunno.screen.MyCamera;
 import net.overmy.dunno.screen.MyCameraPhysics;
@@ -44,8 +44,8 @@ public class MyEntityListener implements EntityListener {
         }
 
         if ( MyMapper.WALK_SOUND.has( entity ) ) {
-            SoundWalkComponent soundWalkComponent = MyMapper.WALK_SOUND.get( entity );
-            soundWalkComponent.id = soundWalkComponent.walk.loop( 0.0f );
+            SoundComponent soundComponent = MyMapper.WALK_SOUND.get( entity );
+            soundComponent.id = soundComponent.snd.loop( 0.0f );
         }
 
         if ( MyMapper.MY_PLAYER.has( entity ) ) {
@@ -127,10 +127,10 @@ public class MyEntityListener implements EntityListener {
         }
 
         if ( MyMapper.WALK_SOUND.has( entity ) ) {
-            SoundWalkComponent soundWalkComponent = MyMapper.WALK_SOUND.get( entity );
-            soundWalkComponent.walk.stop( soundWalkComponent.id );
-            soundWalkComponent.walk.dispose();
-            soundWalkComponent.walk = null;
+            SoundComponent soundComponent = MyMapper.WALK_SOUND.get( entity );
+            soundComponent.snd.stop( soundComponent.id );
+            soundComponent.snd.dispose();
+            soundComponent.snd = null;
         }
 
         if ( MyMapper.MY_PLAYER.has( entity ) ) {
@@ -202,8 +202,8 @@ public class MyEntityListener implements EntityListener {
         }
 /*
         if ( MyMapper.WALK_SOUND.has( entity ) ) {
-            SoundWalkComponent walkSoundComponent = MyMapper.WALK_SOUND.get( entity );
-            walkSoundComponent.walk.stop( walkSoundComponent.id );
+            SoundComponent walkSoundComponent = MyMapper.WALK_SOUND.get( entity );
+            walkSoundComponent.snd.stop( walkSoundComponent.id );
         }
 
         if ( MyMapper.ANIMATION.has( entity ) ) {

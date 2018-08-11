@@ -136,11 +136,14 @@ public enum ModelAsset implements Asset {
     Level115,
 */
     MY_PLAYER( "player" ),
-    MONSTER1( "monster1" ),
-    DRAKON1( "drakon1" ),
+    NPC1( "npc1" ),
+    NPC2( "npc2" ),
+    DOOR_TEST( "door" ),
+/*
     SPIDER1( "spider1" ),
     BALL1( "ball1" ),
     BALL2( "ball2" ),
+*/
 
     SWORD( "sword" ),;
 

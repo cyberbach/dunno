@@ -45,7 +45,7 @@ public final class DynamicLevels {
         Array< Level > levelArray = new Array< Level >();
 
         LevelBuilder objects = new LevelBuilder();
-        levelArray.add( newLevel( "0" ) );
+        levelArray.add( newLevel( "0", objects.LEVEL0() ) );
 /*
         levelArray.add( newLevel( "0, 3, 1" ) );
         levelArray.add( newLevel( "1, 0, 3, 2" ) );

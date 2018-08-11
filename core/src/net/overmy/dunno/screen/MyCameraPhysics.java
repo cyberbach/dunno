@@ -136,7 +136,7 @@ public final class MyCameraPhysics {
         transform.getRotation( tempRotationForUpdate );
 
         targetBody.getWorldTransform().getTranslation( tempPositionForUpdate );
-        tempPositionForUpdate.add( 0, 1.2f, 0 );
+        tempPositionForUpdate.add( 0, 1.1f, 0 );//1.2
 
         tempTransformForUpdate.setToTranslation( tempPositionForUpdate );
         tempTransformForUpdate.rotate( tempRotationForUpdate );

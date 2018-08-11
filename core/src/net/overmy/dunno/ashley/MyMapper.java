@@ -6,6 +6,7 @@ import net.overmy.dunno.ashley.component.AnimationComponent;
 import net.overmy.dunno.ashley.component.BoundingBoxComponent;
 import net.overmy.dunno.ashley.component.CharacterStateComponent;
 import net.overmy.dunno.ashley.component.CollectableComponent;
+import net.overmy.dunno.ashley.component.DoorComponent;
 import net.overmy.dunno.ashley.component.GroundedComponent;
 import net.overmy.dunno.ashley.component.LevelIDComponent;
 import net.overmy.dunno.ashley.component.LevelObjectComponent;
@@ -17,7 +18,7 @@ import net.overmy.dunno.ashley.component.PhysicalBVHComponent;
 import net.overmy.dunno.ashley.component.PhysicalComponent;
 import net.overmy.dunno.ashley.component.RemoveByTimeComponent;
 import net.overmy.dunno.ashley.component.SkipScriptComponent;
-import net.overmy.dunno.ashley.component.SoundWalkComponent;
+import net.overmy.dunno.ashley.component.SoundComponent;
 import net.overmy.dunno.ashley.component.Stage2DGroupComponent;
 import net.overmy.dunno.ashley.component.TypeOfEntityComponent;
 
@@ -38,12 +39,13 @@ public final class MyMapper {
     public static ComponentMapper< GroundedComponent >       GROUNDED       = null;
     public static ComponentMapper< LevelIDComponent >        LEVEL_ID       = null;
     public static ComponentMapper< NPCComponent >            NPC            = null;
-    public static ComponentMapper< SoundWalkComponent >      WALK_SOUND     = null;
+    public static ComponentMapper< SoundComponent >          WALK_SOUND     = null;
     public static ComponentMapper< SkipScriptComponent >     SKIP           = null;
     public static ComponentMapper< CharacterStateComponent > STATE          = null;
     public static ComponentMapper< Stage2DGroupComponent >   GROUP_IN_STAGE = null;
     public static ComponentMapper< LevelObjectComponent >    LEVEL_OBJECT   = null;
     public static ComponentMapper< CollectableComponent >    COLLECTABLE    = null;
+    public static ComponentMapper< DoorComponent >           DOOR           = null;
 
 
     private MyMapper () {
@@ -63,12 +65,13 @@ public final class MyMapper {
         GROUNDED = ComponentMapper.getFor( GroundedComponent.class );
         LEVEL_ID = ComponentMapper.getFor( LevelIDComponent.class );
         NPC = ComponentMapper.getFor( NPCComponent.class );
-        WALK_SOUND = ComponentMapper.getFor( SoundWalkComponent.class );
+        WALK_SOUND = ComponentMapper.getFor( SoundComponent.class );
         SKIP = ComponentMapper.getFor( SkipScriptComponent.class );
         STATE = ComponentMapper.getFor( CharacterStateComponent.class );
         GROUP_IN_STAGE = ComponentMapper.getFor( Stage2DGroupComponent.class );
         LEVEL_OBJECT = ComponentMapper.getFor( LevelObjectComponent.class );
         COLLECTABLE = ComponentMapper.getFor( CollectableComponent.class );
+        DOOR = ComponentMapper.getFor( DoorComponent.class );
     }
 
 
@@ -91,5 +94,6 @@ public final class MyMapper {
         GROUP_IN_STAGE = null;
         LEVEL_OBJECT = null;
         COLLECTABLE = null;
+        DOOR = null;
     }
 }

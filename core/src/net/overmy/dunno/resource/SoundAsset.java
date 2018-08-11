@@ -13,6 +13,8 @@ public enum SoundAsset implements Asset {
     A3( "a3" ),
     A4( "a4" ),
     A5( "a5" ),
+    DOOR1( "door1" ),
+    DOOR2( "door2" ),
 
     CLICK( "click" ),
     SWORD( "sword" ),

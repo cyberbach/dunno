@@ -8,14 +8,16 @@ import com.badlogic.gdx.physics.bullet.collision.ContactListener;
 
 import net.overmy.dunno.DEBUG;
 import net.overmy.dunno.ashley.MyMapper;
-import net.overmy.dunno.ashley.component.CollectableComponent;
 import net.overmy.dunno.ashley.component.LevelIDComponent;
 import net.overmy.dunno.ashley.component.PhysicalComponent;
 import net.overmy.dunno.ashley.component.RemoveByTimeComponent;
 import net.overmy.dunno.ashley.component.TYPE_OF_ENTITY;
 import net.overmy.dunno.logic.CollectableProcessor;
+import net.overmy.dunno.logic.DoorOpener;
 import net.overmy.dunno.logic.DynamicLevels;
+import net.overmy.dunno.logic.Item;
 import net.overmy.dunno.logic.collectable.Collectable;
+import net.overmy.dunno.logic.collectable.DoorSwitchCollectable;
 import net.overmy.dunno.logic.objects.GameObject;
 
 
@@ -207,16 +209,25 @@ public class WorldContactListener extends ContactListener {
             if ( contact1Player && contact2Collectable ) {
                 // Устанавливаем в levelObject флаг, чтобы предмет
                 // не создался снова, при перезагрузке уровня
-                entity02.add( RemoveByTime(0) );
+
                 if ( MyMapper.LEVEL_OBJECT.has( entity02 ) ) {
                     GameObject gameObject = MyMapper.LEVEL_OBJECT.get( entity02 ).gameObject;
                     if ( gameObject.isUsed() ) {
                         return;
                     } else {
                         Collectable c = MyMapper.COLLECTABLE.get( entity02 ).collectable;
-                        CollectableProcessor.process( c );
+
+                        if ( c instanceof DoorSwitchCollectable ) {
+                            DoorSwitchCollectable doorSwitchCollectable = (DoorSwitchCollectable) c;
+                            DoorOpener.insertKey( doorSwitchCollectable.key );
+                        } else {
+                            CollectableProcessor.process( c );
+                            entity02.add( RemoveByTime( 0 ) );
+                        }
+
 //                        entity02.add( new RemoveByTimeComponent( 0 ) );
-                        entity02.remove( CollectableComponent.class );
+                        // FIXME
+                        //entity02.remove( CollectableComponent.class );
                         //CollectableProcessor.process( item, tempPosition1 );
 
                         gameObject.use();
@@ -451,6 +462,18 @@ public class WorldContactListener extends ContactListener {
             }
             return;
         }
+
+        boolean contact2Collectable = type2.equals( TYPE_OF_ENTITY.COLLECTABLE );
+            if ( contact1Player && contact2Collectable ) {
+                if ( MyMapper.LEVEL_OBJECT.has( entity02 ) ) {
+                    Collectable c = MyMapper.COLLECTABLE.get( entity02 ).collectable;
+                    if ( c instanceof DoorSwitchCollectable ) {
+                        DoorOpener.removeKey();
+                        Gdx.app.debug( "DoorOpener","removeKey" );
+                    }
+                }
+                Gdx.app.debug( "end contact contact1Player","contact2Collectable" );
+            }
 /*
 
         boolean contact2Ladder = type2.equals( TYPE_OF_ENTITY.LADDER );

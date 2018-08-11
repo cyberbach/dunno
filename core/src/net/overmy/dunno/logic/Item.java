@@ -11,7 +11,10 @@ import net.overmy.dunno.resource.TextAsset;
 
 
 public enum Item {
+    EMPTY,
     //TRIGGER01
+    DOOR_TEST_KEY_1,
+    DOOR_TEST_KEY_2
     ;
 
     public TextAsset  name       = null;

@@ -5,7 +5,7 @@ package net.overmy.dunno;
         Contact me → http://vk.com/id17317
 */
 public final class DEBUG {
-    public static boolean WINDOWS      = true;
+    public static boolean WINDOWS      = false;
     public static boolean SETTINGS     = false;
     public static boolean ENGLISH_TEXT = false;
     public static boolean FPS          = true;
@@ -26,7 +26,7 @@ public final class DEBUG {
     // ashley
     public static boolean NPC_ACTIONS    = false;
     public static boolean CONTACTS       = false;
-    public static boolean ENTITIES       = true;
+    public static boolean ENTITIES       = false;
     public static boolean DECAL_ENTITIES = false;
 
 

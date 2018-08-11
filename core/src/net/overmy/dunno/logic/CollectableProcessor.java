@@ -9,6 +9,7 @@ import com.badlogic.gdx.math.Vector3;
 
 import net.overmy.dunno.ashley.EntityBuilder;
 import net.overmy.dunno.logic.collectable.Collectable;
+import net.overmy.dunno.logic.collectable.DoorSwitchCollectable;
 import net.overmy.dunno.logic.collectable.TriggerCollectable;
 import net.overmy.dunno.resource.TextAsset;
 
