@@ -1,4 +1,4 @@
-package net.overmy.dunno.logic;
+package net.overmy.dunno.logic.objects;
 
 /*
      Created by Andrey Mikheev on 20.04.2017
@@ -13,7 +13,7 @@ import net.overmy.dunno.resource.TextAsset;
 public enum Item {
     EMPTY,
     //TRIGGER01
-    DOOR_TEST_KEY_1,
+    MAIN_DOOR_KEY_1,
     DOOR_TEST_KEY_2
     ;
 

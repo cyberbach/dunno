@@ -40,7 +40,7 @@ public final class MyCameraPhysics {
 
 
     private static void createBIGCameraBody () {
-        Vector3 cameraBodyOffset = new Vector3( 0, 1.7f, 5.0f );
+        Vector3 cameraBodyOffset = new Vector3( 0, 1.2f, 3.2f );
 
         PhysicalBuilder physicalBuilder = new PhysicalBuilder()
                 .defaultMotionState()

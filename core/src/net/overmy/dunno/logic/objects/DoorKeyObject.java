@@ -2,16 +2,12 @@ package net.overmy.dunno.logic.objects;
 
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.utils.ImmutableArray;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector3;
 
 import net.overmy.dunno.ashley.AshleyWorld;
-import net.overmy.dunno.ashley.EntityBuilder;
 import net.overmy.dunno.ashley.component.RemoveByTimeComponent;
-import net.overmy.dunno.logic.Item;
+import net.overmy.dunno.ashley.entity.TriggerEntity;
 import net.overmy.dunno.logic.collectable.DoorSwitchCollectable;
-import net.overmy.dunno.logic.collectable.TRIGGER;
-import net.overmy.dunno.logic.collectable.TriggerCollectable;
 import net.overmy.dunno.resource.Asset;
 
 
@@ -24,12 +20,12 @@ public class DoorKeyObject implements GameObject {
 
     private Entity entity = null;
     private Vector3 position;
-    private Item key;
+    private Item    key;
     private float   size;
 
 
-    public DoorKeyObject ( Item key, Vector3 position, float size ) {
-        this.position = position;
+    public DoorKeyObject ( float x, float y, float z, float size, Item key ) {
+        this.position = new Vector3( x, y, z );
         this.key = key;
         this.size = size;
     }
@@ -49,7 +45,7 @@ public class DoorKeyObject implements GameObject {
 
     @Override
     public void use () {
-        Gdx.app.debug( "key " + key, "used" );
+        //Gdx.app.debug( "key " + key, "used" );
     }
 
 
@@ -65,11 +61,11 @@ public class DoorKeyObject implements GameObject {
             return;
         }
 
-            DoorSwitchCollectable collectable = new DoorSwitchCollectable();
-            collectable.key = key;
+        DoorSwitchCollectable collectable = new DoorSwitchCollectable();
+        collectable.key = key;
 
-            entity = new EntityBuilder().createTrigger( this, collectable, position, size );
-            AshleyWorld.getEngine().addEntity( entity );
+        entity = TriggerEntity.create( this, collectable, position, size );
+        AshleyWorld.getEngine().addEntity( entity );
     }
 
 
@@ -80,7 +76,7 @@ public class DoorKeyObject implements GameObject {
         }
 
         RemoveByTimeComponent removeByTimeComponent = new RemoveByTimeComponent();
-        removeByTimeComponent.time=0.0f;
+        removeByTimeComponent.time = 0.0f;
 
         entity.add( removeByTimeComponent );
         entity = null;

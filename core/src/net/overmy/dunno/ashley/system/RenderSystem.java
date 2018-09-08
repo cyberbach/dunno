@@ -9,6 +9,9 @@ import com.badlogic.gdx.graphics.Mesh;
 import com.badlogic.gdx.graphics.PerspectiveCamera;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g3d.Environment;
 import com.badlogic.gdx.graphics.g3d.ModelBatch;
 import com.badlogic.gdx.graphics.g3d.ModelInstance;
@@ -22,6 +25,7 @@ import net.overmy.dunno.DEBUG;
 import net.overmy.dunno.ashley.MyMapper;
 import net.overmy.dunno.ashley.component.ModelComponent;
 import net.overmy.dunno.ashley.component.OutOfCameraComponent;
+import net.overmy.dunno.resource.IMG;
 import net.overmy.dunno.screen.MyCamera;
 import net.overmy.dunno.screen.MyRender;
 
@@ -35,9 +39,12 @@ public class RenderSystem extends IteratingSystem {
     private final float green = Core.BG_COLOR.g;
     private final float blue  = Core.BG_COLOR.b;
 
+    private final SpriteBatch       spriteBatch;
     private final ModelBatch        modelBatch;
     private final Environment       environment;
     private final PerspectiveCamera perspectiveCamera;
+
+    private final TextureRegion bg;
 
     private int visibleModelsCount = 0;
     private int totalModelsCount   = 0;
@@ -55,6 +62,9 @@ public class RenderSystem extends IteratingSystem {
         environment = MyRender.getEnvironment();
         modelBatch = MyRender.getModelBatch();
         perspectiveCamera = MyCamera.getPerspectiveCamera();
+        spriteBatch = MyRender.getSpriteBatch();
+
+        bg = IMG.SKY_TEXTURE.getRegion();
 
         if ( DEBUG.SHADERS ) {
             // render to texture
@@ -86,9 +96,13 @@ public class RenderSystem extends IteratingSystem {
             Gdx.gl.glEnable( GL20.GL_DEPTH_TEST );
             Gdx.gl.glDepthFunc( GL20.GL_LEQUAL );
             Gdx.gl.glDepthMask( true );*/
-            Gdx.gl.glClearColor(  red, green, blue, 1 );
+            Gdx.gl.glClearColor( red, green, blue, 1 );
             Gdx.gl.glClear( GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT );
         }
+
+        spriteBatch.begin();
+        spriteBatch.draw( bg, 0, 0, Core.WIDTH, Core.HEIGHT );
+        spriteBatch.end();
 
         modelBatch.begin( perspectiveCamera );
         super.update( delta );

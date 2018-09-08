@@ -9,7 +9,7 @@ package net.overmy.dunno.ashley.component;
 
 import com.badlogic.gdx.math.Vector3;
 
-import net.overmy.dunno.logic.Item;
+import net.overmy.dunno.logic.objects.Item;
 
 public class DoorComponent extends ItemComponent {
     public float startAngle;

@@ -6,8 +6,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector3;
 
 import net.overmy.dunno.ashley.AshleyWorld;
-import net.overmy.dunno.ashley.EntityBuilder;
 import net.overmy.dunno.ashley.component.RemoveByTimeComponent;
+import net.overmy.dunno.ashley.entity.TriggerEntity;
 import net.overmy.dunno.logic.collectable.TRIGGER;
 import net.overmy.dunno.logic.collectable.TriggerCollectable;
 import net.overmy.dunno.resource.Asset;
@@ -27,8 +27,8 @@ public class TriggerObject implements GameObject {
     private float   size;
 
 
-    public TriggerObject ( TRIGGER trigger, Vector3 position, float size ) {
-        this.position = position;
+    public TriggerObject ( TRIGGER trigger, float x, float y, float z, float size ) {
+        this.position = new Vector3( x, y, z );
         this.trigger = trigger;
         this.size = size;
     }
@@ -73,7 +73,7 @@ public class TriggerObject implements GameObject {
             TriggerCollectable collectable = new TriggerCollectable();
             collectable.trigger = trigger;
 
-            entity = new EntityBuilder().createTrigger( this, collectable, position, size );
+            entity = TriggerEntity.create( this, collectable, position, size );
             AshleyWorld.getEngine().addEntity( entity );
         }
     }
@@ -86,7 +86,7 @@ public class TriggerObject implements GameObject {
         }
 
         RemoveByTimeComponent removeByTimeComponent = new RemoveByTimeComponent();
-        removeByTimeComponent.time=0.0f;
+        removeByTimeComponent.time = 0.0f;
 
         entity.add( removeByTimeComponent );
         entity = null;

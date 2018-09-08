@@ -9,11 +9,11 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.bullet.dynamics.btRigidBody;
 
 import net.overmy.dunno.Core;
+import net.overmy.dunno.ashley.CHARACTER_STATE;
 import net.overmy.dunno.ashley.MyMapper;
 import net.overmy.dunno.ashley.component.AnimationComponent;
 import net.overmy.dunno.ashley.component.CharacterStateComponent;
 import net.overmy.dunno.ashley.component.MyPlayerComponent;
-import net.overmy.dunno.logic.CHARACTER_STATE;
 import net.overmy.dunno.screen.MyCamera;
 import net.overmy.dunno.screen.MyPlayerGUI;
 

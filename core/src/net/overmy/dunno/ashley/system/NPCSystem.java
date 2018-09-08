@@ -12,14 +12,14 @@ import com.badlogic.gdx.physics.bullet.dynamics.btRigidBody;
 
 import net.overmy.dunno.Core;
 import net.overmy.dunno.DEBUG;
+import net.overmy.dunno.ashley.CHARACTER_STATE;
 import net.overmy.dunno.ashley.MyMapper;
 import net.overmy.dunno.ashley.component.AnimationComponent;
 import net.overmy.dunno.ashley.component.CharacterStateComponent;
 import net.overmy.dunno.ashley.component.NPCComponent;
 import net.overmy.dunno.ashley.component.SoundComponent;
 import net.overmy.dunno.ashley.component.TextDecalComponent;
-import net.overmy.dunno.logic.CHARACTER_STATE;
-import net.overmy.dunno.logic.NPCAction;
+import net.overmy.dunno.logic.script.NPCAction;
 import net.overmy.dunno.resource.TextAsset;
 
 /*
@@ -37,7 +37,8 @@ public class NPCSystem extends IteratingSystem {
     private Vector3 positionForSoundDistance = new Vector3();
     private Vector3 playerPosition           = new Vector3();
 
-    private float capsuleAngle = 0.0f;
+    private float capsuleAngle    = 0.0f;
+    private float speedOfMovement = 0.0f;
 
 
     @SuppressWarnings( "unchecked" )
@@ -64,7 +65,7 @@ public class NPCSystem extends IteratingSystem {
         // работа со скриптом поведения персонажа - переключает состояния персонажа NPC
         ProcessScriptAndChangeStates( npcComponent, npcState, needToSkip );
 
-        MoveAndRotatePhysicalBody( body, npcState );
+        MoveAndRotatePhysicalBody( body );
 
         AnimationComponent animationComponent = MyMapper.ANIMATION.get( entity );
         changeAnimationFromState( animationComponent, npcState );
@@ -94,15 +95,35 @@ public class NPCSystem extends IteratingSystem {
 
 
     private void changeAnimationFromState ( AnimationComponent component,
-                                            CharacterStateComponent npcState ) {
-        final float animationSpeed = 2.0f;
-
-        if ( !npcState.nextState.equals( npcState.state ) ) {
-            playAnimation( component, npcState.nextState.ordinal(), animationSpeed );
-            npcState.state = npcState.nextState;
+                                            CharacterStateComponent playerState ) {
+        if ( !playerState.nextState.equals( playerState.state ) ) {
+            float nextSpeed = speedFromState( playerState.nextState );
+            playAnimation( component, playerState.nextState.ordinal(), nextSpeed );
+            playerState.state = playerState.nextState;
         }
 
-        queueAnimation( component, npcState.nextState.ordinal(), animationSpeed );
+        float animationSpeed = speedFromState( playerState.state );
+        queueAnimation( component, playerState.nextState.ordinal(), animationSpeed );
+    }
+
+
+    private float speedFromState ( CHARACTER_STATE state ) {
+        switch ( state ) {
+            case IDLE:
+                return 1.0f;
+            case WALK:
+                return 2.0f;
+            case RUN:
+                return 3.0f;
+            case ATTACK:
+                break;
+            case HURT:
+                break;
+            case DIE:
+                break;
+        }
+
+        return 2.0f;
     }
 
 
@@ -145,6 +166,7 @@ public class NPCSystem extends IteratingSystem {
             case WAIT:
                 npcState.nextState = CHARACTER_STATE.IDLE;
                 direction.set( 0, 0 );
+                speedOfMovement = 0.0f;
                 break;
 
             case ANIMATE:
@@ -153,12 +175,14 @@ public class NPCSystem extends IteratingSystem {
                 break;
 
             case MOVE:
+                speedOfMovement = 2.5f;
                 npcState.nextState = CHARACTER_STATE.WALK;
                 npcPosition.set( position.x, position.z );
                 direction.set( npcAction.targetPosition.x, npcAction.targetPosition.y );
                 direction.sub( npcPosition );
 
                 if ( direction.len() <= 0.1f ) {
+                    speedOfMovement = 0.0f;
                     npcComponent.time = -1;
                     direction.set( 0, 0 );
                 }
@@ -166,6 +190,7 @@ public class NPCSystem extends IteratingSystem {
                 break;
 
             case HUNT:
+                speedOfMovement = 5.0f;
                 npcState.nextState = CHARACTER_STATE.RUN;
                 npcPosition.set( position.x, position.z );
                 playerPosition.set( Core.playerPosition );
@@ -188,18 +213,10 @@ public class NPCSystem extends IteratingSystem {
     }
 
 
-    private void MoveAndRotatePhysicalBody ( btRigidBody body,
-                                             CharacterStateComponent playerState ) {
-        float speedOfMovement;
-        if ( direction.len() == 0 ) {
-            playerState.nextState = CHARACTER_STATE.IDLE;
-            speedOfMovement = 0;
-        } else {
-            playerState.nextState = CHARACTER_STATE.WALK;
-            speedOfMovement = 5.0f;
+    private void MoveAndRotatePhysicalBody ( btRigidBody body ) {
 
+        if ( speedOfMovement > 0 ) {
             direction.nor();
-
             // Сохраняем угол для поворота модели
             capsuleAngle = 90 - direction.angle();
         }

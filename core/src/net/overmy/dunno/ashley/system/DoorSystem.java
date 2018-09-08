@@ -10,7 +10,7 @@ import com.badlogic.gdx.math.Vector3;
 import net.overmy.dunno.ashley.MyMapper;
 import net.overmy.dunno.ashley.component.DoorComponent;
 import net.overmy.dunno.ashley.component.PhysicalComponent;
-import net.overmy.dunno.logic.Item;
+import net.overmy.dunno.logic.objects.Item;
 
 /*
       Created by Andrey Mikheev on 30.09.2017
@@ -19,8 +19,8 @@ import net.overmy.dunno.logic.Item;
 
 public class DoorSystem extends IteratingSystem {
 
-    Item  testItem  = Item.EMPTY;
-    Sound openSound = null;
+    private Item  testItem  = Item.EMPTY;
+    private Sound openSound = null;
 
 
     @SuppressWarnings( "unchecked" )
@@ -52,7 +52,7 @@ public class DoorSystem extends IteratingSystem {
                     }
                 }
 
-                if(openSound==null){
+                if ( openSound == null ) {
                     openSound = MyMapper.WALK_SOUND.get( entity ).snd;
                     openSound.play();
                 }

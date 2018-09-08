@@ -6,49 +6,49 @@ filter: Nearest,Nearest
 repeat: none
 aim
   rotate: false
-  xy: 260, 182
+  xy: 518, 438
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 attack
   rotate: false
-  xy: 260, 248
+  xy: 518, 504
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
   index: -1
 attack2
   rotate: false
-  xy: 516, 762
+  xy: 260, 248
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
   index: -1
 button
   rotate: false
-  xy: 774, 856
+  xy: 100, 52
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 cloud1
   rotate: false
-  xy: 2, 20
+  xy: 774, 922
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 cloud2
   rotate: false
-  xy: 774, 922
+  xy: 2, 20
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 cloud3
   rotate: false
-  xy: 516, 664
+  xy: 260, 150
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
@@ -69,14 +69,21 @@ pad
   index: -1
 particle
   rotate: false
-  xy: 872, 986
+  xy: 358, 214
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
+sky
+  rotate: false
+  xy: 516, 762
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
 starpart
   rotate: false
-  xy: 516, 630
+  xy: 774, 888
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
@@ -90,35 +97,35 @@ start
   index: -1
 tri1
   rotate: false
-  xy: 614, 744
+  xy: 2, 2
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 tri2
   rotate: false
-  xy: 2, 2
+  xy: 260, 132
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 tri3
   rotate: false
-  xy: 100, 100
+  xy: 872, 1002
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 tri4
   rotate: false
-  xy: 260, 164
+  xy: 518, 420
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 tri5
   rotate: false
-  xy: 326, 230
+  xy: 584, 486
   size: 16, 16
   orig: 16, 16
   offset: 0, 0

@@ -3,11 +3,12 @@ package net.overmy.dunno.logic.objects;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.utils.Array;
 
 import net.overmy.dunno.ashley.AshleyWorld;
-import net.overmy.dunno.ashley.EntityBuilder;
 import net.overmy.dunno.ashley.component.RemoveByTimeComponent;
-import net.overmy.dunno.logic.NPCAction;
+import net.overmy.dunno.ashley.entity.NpcEntity;
+import net.overmy.dunno.logic.script.NPCAction;
 import net.overmy.dunno.resource.Asset;
 import net.overmy.dunno.resource.ModelAsset;
 import net.overmy.dunno.resource.SoundAsset;
@@ -25,13 +26,18 @@ public class NPCObject implements GameObject {
     private ImmutableArray< Asset >     assets;
 
 
-    public NPCObject ( Vector3 position, ImmutableArray< Asset > assets,
-                       ImmutableArray< NPCAction > actionArray ) {
-        this.position = position;
+    public NPCObject ( float x, float y, float z,
+                       ModelAsset npcModelAsset,
+                       ImmutableArray< NPCAction > actionArray,
+                       SoundAsset walkSound ) {
 
-        this.assets = assets;
+        Array< Asset > assetArray = new Array< Asset >();
+        assetArray.add( npcModelAsset );
+        assetArray.add( walkSound );
+
+        this.position = new Vector3( x, y, z );
+        this.assets = new ImmutableArray< Asset >( assetArray );
         this.actionArray = actionArray;
-
         this.walkSoundAsset = (SoundAsset) assets.get( 1 );
     }
 
@@ -67,7 +73,7 @@ public class NPCObject implements GameObject {
         }
 
         ModelAsset modelAsset = (ModelAsset) assets.first();
-        entity = new EntityBuilder().createNPC( position, modelAsset, actionArray, walkSoundAsset );
+        entity = NpcEntity.create( position, modelAsset, actionArray, walkSoundAsset );
         AshleyWorld.getEngine().addEntity( entity );
     }
 

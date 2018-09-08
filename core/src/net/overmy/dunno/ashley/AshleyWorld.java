@@ -11,7 +11,7 @@ import net.overmy.dunno.ashley.system.NPCSystem;
 import net.overmy.dunno.ashley.system.PhysicalSystem;
 import net.overmy.dunno.ashley.system.RemoveByTimeSystem;
 import net.overmy.dunno.ashley.system.RenderSystem;
-import net.overmy.dunno.logic.DoorOpener;
+import net.overmy.dunno.ashley.system.DoorOpener;
 
 /*
         Created by Andrey Mikheev on 05.06.2018

@@ -18,7 +18,12 @@ import net.overmy.dunno.DEBUG;
         Contact me → http://vk.com/id17317
 */
 public enum ModelAsset implements Asset {
-    Level0,/*
+    Level0,
+    Level1,
+    Level2,
+    Level3,
+    Level4,
+    /*
     Level1,
     Level2,
     Level3,
@@ -135,6 +140,7 @@ public enum ModelAsset implements Asset {
     Level114,
     Level115,
 */
+    //SKYDOME( "skydome" ),
     MY_PLAYER( "player" ),
     NPC1( "npc1" ),
     NPC2( "npc2" ),

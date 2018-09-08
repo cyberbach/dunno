@@ -1,6 +1,5 @@
 package net.overmy.dunno;
 
-import com.badlogic.gdx.Application;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -9,7 +8,7 @@ import com.badlogic.gdx.utils.Logger;
 
 import net.overmy.dunno.ashley.AshleyWorld;
 import net.overmy.dunno.bullet.BulletWorld;
-import net.overmy.dunno.logic.DynamicLevels;
+import net.overmy.dunno.logic.level.DynamicLevels;
 import net.overmy.dunno.resource.Assets;
 import net.overmy.dunno.resource.Settings;
 import net.overmy.dunno.screen.CutSceneScreen;
@@ -38,8 +37,6 @@ public class MyGdxGame extends ApplicationAdapter {
 
     @Override
     public void create () {
-        Gdx.app.setLogLevel( Application.LOG_DEBUG );
-
         Settings.load();
         Assets.init();
         Assets.setLogLevel( Logger.DEBUG );

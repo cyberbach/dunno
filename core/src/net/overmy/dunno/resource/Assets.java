@@ -48,6 +48,7 @@ public class Assets {
         FontAsset.loadAll();
         IMG.load();
         MusicAsset.Main.load();
+       // ModelAsset.SKYDOME.load();
     }
 
 
@@ -55,6 +56,7 @@ public class Assets {
         FontAsset.buildAll();
         IMG.build();
         MusicAsset.Main.build();
+        //ModelAsset.SKYDOME.build();
     }
 
 

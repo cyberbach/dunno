@@ -13,9 +13,9 @@ import net.overmy.dunno.DEBUG;
 import net.overmy.dunno.MyGdxGame;
 import net.overmy.dunno.MyGdxGame.SCREEN_TYPE;
 import net.overmy.dunno.ashley.AshleyWorld;
-import net.overmy.dunno.ashley.EntityBuilder;
+import net.overmy.dunno.ashley.entity.PlayerEntity;
 import net.overmy.dunno.bullet.BulletWorld;
-import net.overmy.dunno.logic.DynamicLevels;
+import net.overmy.dunno.logic.level.DynamicLevels;
 import net.overmy.dunno.resource.Assets;
 import net.overmy.dunno.resource.ModelAsset;
 
@@ -124,11 +124,28 @@ public class LoadingScreen extends BaseScreen {
     // FIXME покрасивше
     private void buildGame () {
         MyCameraPhysics.init();
+/*
+        ModelAsset.SKYDOME.calculateBoundingBox();
+
+        ModelInstance modelInstance = ModelAsset.SKYDOME.get();
+        modelInstance.materials.get( 0 ).clear();
+        TextureAttribute diffuse = TextureAttribute.createDiffuse( IMG.SKY_TEXTURE.getRegion() );
+        modelInstance.materials.get( 0 ).set( diffuse );
+        ModelComponent modelComponent = new ModelComponent();
+        modelComponent.modelInstance = modelInstance;
+        TypeOfEntityComponent typeOfEntityComponent = new TypeOfEntityComponent();
+        typeOfEntityComponent.type = TYPE_OF_ENTITY.SKY;
+        BoundingBoxComponent boundingBoxComponent = new BoundingBoxComponent();
+        boundingBoxComponent.boundingBox = ModelAsset.SKYDOME.getBoundingBox();
+        Entity skyEntity = new Entity();
+        skyEntity.add( modelComponent );
+        skyEntity.add( typeOfEntityComponent );
+        skyEntity.add( boundingBoxComponent );
+        AshleyWorld.getEngine().addEntity( skyEntity );*/
 
         ModelAsset.MY_PLAYER.build();
 
-        Entity playerEntity = new EntityBuilder().createPlayer( ModelAsset.MY_PLAYER,
-                                                                new Vector3( 0, 5, 0 ) );
+        Entity playerEntity = PlayerEntity.create( ModelAsset.MY_PLAYER, new Vector3( 0, 5, 0 ) );
         AshleyWorld.getEngine().addEntity( playerEntity );
     }
 

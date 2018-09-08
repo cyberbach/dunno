@@ -1,6 +1,6 @@
 package net.overmy.dunno.logic.collectable;
 
-import net.overmy.dunno.logic.Item;
+import net.overmy.dunno.logic.objects.Item;
 
 /*
         Created by Andrey Mikheev on 11.08.2018

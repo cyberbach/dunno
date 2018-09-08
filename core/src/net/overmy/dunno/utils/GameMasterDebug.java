@@ -10,7 +10,7 @@ import com.badlogic.gdx.utils.TimeUtils;
 import net.overmy.dunno.Core;
 import net.overmy.dunno.ashley.AshleyWorld;
 import net.overmy.dunno.ashley.system.RenderSystem;
-import net.overmy.dunno.logic.DynamicLevels;
+import net.overmy.dunno.logic.level.DynamicLevels;
 
 /*
         Created by Andrey Mikheev on 19.07.2018

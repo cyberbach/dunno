@@ -2,8 +2,8 @@ package net.overmy.dunno.ashley.component;
 
 import com.badlogic.ashley.utils.ImmutableArray;
 
-import net.overmy.dunno.logic.Item;
-import net.overmy.dunno.logic.NPCAction;
+import net.overmy.dunno.logic.objects.Item;
+import net.overmy.dunno.logic.script.NPCAction;
 
 
 

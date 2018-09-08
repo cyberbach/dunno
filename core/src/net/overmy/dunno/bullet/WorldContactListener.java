@@ -13,9 +13,8 @@ import net.overmy.dunno.ashley.component.PhysicalComponent;
 import net.overmy.dunno.ashley.component.RemoveByTimeComponent;
 import net.overmy.dunno.ashley.component.TYPE_OF_ENTITY;
 import net.overmy.dunno.logic.CollectableProcessor;
-import net.overmy.dunno.logic.DoorOpener;
-import net.overmy.dunno.logic.DynamicLevels;
-import net.overmy.dunno.logic.Item;
+import net.overmy.dunno.ashley.system.DoorOpener;
+import net.overmy.dunno.logic.level.DynamicLevels;
 import net.overmy.dunno.logic.collectable.Collectable;
 import net.overmy.dunno.logic.collectable.DoorSwitchCollectable;
 import net.overmy.dunno.logic.objects.GameObject;
@@ -469,7 +468,7 @@ public class WorldContactListener extends ContactListener {
                     Collectable c = MyMapper.COLLECTABLE.get( entity02 ).collectable;
                     if ( c instanceof DoorSwitchCollectable ) {
                         DoorOpener.removeKey();
-                        Gdx.app.debug( "DoorOpener","removeKey" );
+                        //Gdx.app.debug( "DoorOpener","removeKey" );
                     }
                 }
                 Gdx.app.debug( "end contact contact1Player","contact2Collectable" );

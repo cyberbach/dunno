@@ -3,11 +3,11 @@ package net.overmy.dunno.logic.objects;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.utils.Array;
 
 import net.overmy.dunno.ashley.AshleyWorld;
-import net.overmy.dunno.ashley.EntityBuilder;
 import net.overmy.dunno.ashley.component.RemoveByTimeComponent;
-import net.overmy.dunno.logic.Item;
+import net.overmy.dunno.ashley.entity.DoorEntity;
 import net.overmy.dunno.resource.Asset;
 import net.overmy.dunno.resource.ModelAsset;
 import net.overmy.dunno.resource.SoundAsset;
@@ -23,19 +23,25 @@ public class DoorObject implements GameObject {
     private Item                    key;
     private SoundAsset              openSoundAsset;
     private ImmutableArray< Asset > assets;
-    private float from;
-    private float to;
+    private float                   from;
+    private float                   to;
 
 
-    public DoorObject ( Vector3 position, float from, float to,
-                        ImmutableArray< Asset > assets, Item key ) {
-        this.position = position;
+    public DoorObject ( float x, float y, float z,
+                        float fromAngle, float toAngle,
+                        Item key,
+                        ModelAsset doorAsset,
+                        SoundAsset doorSound ) {
 
-        this.assets = assets;
+        Array< Asset > assetArray = new Array< Asset >();
+        assetArray.add( doorAsset );
+        assetArray.add( doorSound );
+
+        this.position = new Vector3( x, y, z );
+        this.assets = new ImmutableArray< Asset >( assetArray );
         this.key = key;
-        this.from = from;
-        this.to = to;
-
+        this.from = fromAngle;
+        this.to = toAngle;
         this.openSoundAsset = (SoundAsset) assets.get( 1 );
     }
 
@@ -71,7 +77,7 @@ public class DoorObject implements GameObject {
         }
 
         ModelAsset modelAsset = (ModelAsset) assets.first();
-        entity = new EntityBuilder().createDoor( position, from, to , modelAsset, key, openSoundAsset );
+        entity = DoorEntity.create( position, from, to, modelAsset, key, openSoundAsset );
         AshleyWorld.getEngine().addEntity( entity );
     }
 

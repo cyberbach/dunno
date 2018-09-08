@@ -1,6 +1,6 @@
-package net.overmy.dunno.logic;
+package net.overmy.dunno.ashley.system;
 
-import net.overmy.dunno.ashley.system.DoorSystem;
+import net.overmy.dunno.logic.objects.Item;
 
 /*
         Created by Andrey Mikheev on 11.08.2018
@@ -13,14 +13,15 @@ public final class DoorOpener {
 
     private static DoorSystem system;
 
-    public static void insertKey ( Item key ){
+
+    public static void insertKey ( Item key ) {
         system.processKey( key );
     }
 
-    public static void removeKey (){
+
+    public static void removeKey () {
         system.processKey( Item.EMPTY );
     }
-
 
 
     public static void setSystem ( DoorSystem system2 ) {

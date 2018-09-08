@@ -9,7 +9,7 @@ import net.overmy.dunno.DEBUG;
 import net.overmy.dunno.MyGdxGame;
 import net.overmy.dunno.ashley.AshleyWorld;
 import net.overmy.dunno.bullet.BulletWorld;
-import net.overmy.dunno.logic.DynamicLevels;
+import net.overmy.dunno.logic.level.DynamicLevels;
 import net.overmy.dunno.utils.GameMasterDebug;
 
 /*

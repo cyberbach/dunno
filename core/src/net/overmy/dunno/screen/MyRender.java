@@ -96,7 +96,7 @@ public final class MyRender {
         environment = new Environment();
 
         environment.set( new ColorAttribute( ColorAttribute.AmbientLight, Core.AMBIENT_COLOR ) );
-        environment.set( new ColorAttribute( ColorAttribute.Fog, Core.BG_COLOR ) );
+        //environment.set( new ColorAttribute( ColorAttribute.Fog, Core.BG_COLOR ) );
         environment.add( MyCamera.getLight() );
 
         if ( DEBUG.SHADERS ) {

@@ -16,6 +16,7 @@ public enum IMG {
     BUTTON( "button" ),
     AIM( "aim" ),
 
+    SKY_TEXTURE( "sky" ),
     WORLD_TEXTURE( "materials" ),
     START_BUTTON( "start" ),
 

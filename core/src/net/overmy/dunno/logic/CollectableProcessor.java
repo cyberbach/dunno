@@ -5,11 +5,8 @@ package net.overmy.dunno.logic;
         Contact me → http://vk.com/id17317
 */
 
-import com.badlogic.gdx.math.Vector3;
-
-import net.overmy.dunno.ashley.EntityBuilder;
+import net.overmy.dunno.ashley.entity.TextEntity;
 import net.overmy.dunno.logic.collectable.Collectable;
-import net.overmy.dunno.logic.collectable.DoorSwitchCollectable;
 import net.overmy.dunno.logic.collectable.TriggerCollectable;
 import net.overmy.dunno.resource.TextAsset;
 
@@ -31,7 +28,7 @@ public final class CollectableProcessor {
                 case TRIGGER_GAMEOVER:
                     break;
                 case TRIGGER_GAMEINTRO:
-                    new EntityBuilder().createText( TextAsset.TEXT1 );
+                    TextEntity.create( TextAsset.TEXT1 );
                     break;
                 case TRIGGER1:
                     break;

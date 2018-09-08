@@ -12,6 +12,7 @@ public enum TYPE_OF_ENTITY {
     PICKABLE,
     INTERACTIVE,
     LADDER,
+    SKY,
     GROUND,
     WEAPON,
     MYPLAYER,

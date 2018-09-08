@@ -1,4 +1,4 @@
-package net.overmy.dunno.logic;
+package net.overmy.dunno.logic.level;
 
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.utils.ImmutableArray;
@@ -20,20 +20,4 @@ public class Level {
 
     // Объекты на уровне, включая NPC и Enemy - это тоже объекты
     ImmutableArray< GameObject > objects = null;
-
-/*
-    Level ( String str, Array< GameObject > objects ) {
-        // на выходе из этого метода GameHelper удалится из памяти
-        GameHelper helper = new GameHelper();
-
-        this.connections = helper.toInts( str );
-        this.objects = new ImmutableArray< GameObject >( objects );
-    }
-
-
-    Level ( String str ) {
-        GameHelper helper = new GameHelper();
-
-        this.connections = helper.toInts( str );
-    }*/
 }
