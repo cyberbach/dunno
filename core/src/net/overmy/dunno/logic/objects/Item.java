@@ -14,9 +14,9 @@ public enum Item {
     EMPTY,
     //TRIGGER01
     MAIN_DOOR_KEY_1,
-    DOOR_TEST_KEY_2
-    ;
+    DOOR_TEST_KEY_2;
 
+    public int count = 0;
     public TextAsset  name       = null;
     public TextAsset  about      = null;
     public IMG        imageID    = null;

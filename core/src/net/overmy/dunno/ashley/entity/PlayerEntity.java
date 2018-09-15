@@ -1,6 +1,7 @@
 package net.overmy.dunno.ashley.entity;
 
 import com.badlogic.ashley.core.Entity;
+import com.badlogic.gdx.graphics.g3d.Attribute;
 import com.badlogic.gdx.graphics.g3d.ModelInstance;
 import com.badlogic.gdx.graphics.g3d.attributes.TextureAttribute;
 import com.badlogic.gdx.math.Vector3;
@@ -27,12 +28,12 @@ public class PlayerEntity {
     }
 
 
-    public static Entity create ( ModelAsset myPlayer, Vector3 position ) {
-        ModelInstance modelInstance = myPlayer.get();
+    public static Entity create ( Vector3 position ) {
+        ModelInstance modelInstance = ModelAsset.MY_PLAYER.get();
 
         modelInstance.materials.get( 0 ).clear();
-        TextureAttribute diffuse = TextureAttribute.createDiffuse( IMG.WORLD_TEXTURE.getRegion() );
-        modelInstance.materials.get( 0 ).set( diffuse );
+        modelInstance.materials.get( 0 ).set( IMG.WORLD_TEXTURE.getDiffuse() );
+
 
         PhysicalBuilder physicalBuilder = new PhysicalBuilder()
                 .setModelInstance( modelInstance )

@@ -3,6 +3,7 @@ package net.overmy.dunno.resource;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g3d.attributes.TextureAttribute;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
@@ -73,6 +74,17 @@ public enum IMG {
     public TextureAtlas.AtlasRegion getRegion () {
         return atlas.findRegion( this.name );
     }
+
+
+    public TextureAttribute getDiffuse () {
+        return TextureAttribute.createDiffuse( atlas.findRegion( this.name ) );
+    }
+/*
+
+    public TextureAttribute getNormal () {
+        return TextureAttribute.createNormal( atlas.findRegion( this.name ) );
+    }
+*/
 
 
     public Image getImageActor ( final float width, final float height ) {

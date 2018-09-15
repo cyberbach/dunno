@@ -2,6 +2,7 @@ package net.overmy.dunno.screen;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Mesh;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
@@ -16,10 +17,12 @@ import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute;
 import com.badlogic.gdx.graphics.g3d.decals.CameraGroupStrategy;
 import com.badlogic.gdx.graphics.g3d.decals.DecalBatch;
 import com.badlogic.gdx.graphics.g3d.decals.GroupStrategy;
+import com.badlogic.gdx.graphics.g3d.environment.PointLight;
 import com.badlogic.gdx.graphics.g3d.shaders.DefaultShader;
 import com.badlogic.gdx.graphics.g3d.utils.DefaultShaderProvider;
 import com.badlogic.gdx.graphics.g3d.utils.ShaderProvider;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -86,7 +89,7 @@ public final class MyRender {
 
         DefaultShader.Config config = new DefaultShader.Config();
         config.numDirectionalLights = 1;
-        config.numPointLights = 0;
+        config.numPointLights = 5;
         config.numBones = 16;
 
         ShaderProvider myShaderProvider = new DefaultShaderProvider( config );
@@ -96,8 +99,19 @@ public final class MyRender {
         environment = new Environment();
 
         environment.set( new ColorAttribute( ColorAttribute.AmbientLight, Core.AMBIENT_COLOR ) );
+        //environment.set( new ColorAttribute( ColorAttribute.AmbientLight, new Color( 0.1f,0.1f,0.1f,1 ) ) );
         //environment.set( new ColorAttribute( ColorAttribute.Fog, Core.BG_COLOR ) );
         environment.add( MyCamera.getLight() );
+/*
+
+        PointLight pointLight1 = new PointLight();
+        pointLight1 .set(Color.RED, new Vector3(  5.5809145f, 1.3119637f, 13.890395f ), 6.0f);
+        environment.add( pointLight1 );
+
+        PointLight pointLight2 = new PointLight();
+        pointLight2 .set(Color.YELLOW, new Vector3( 10.229919f, 1.3119589f, 7.420359f ), 8.0f);
+        environment.add( pointLight2 );
+*/
 
         if ( DEBUG.SHADERS ) {
             // TOON

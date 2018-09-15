@@ -28,8 +28,7 @@ public class GroundEntity {
         ModelInstance modelInstance = levelAsset.get();
 
         modelInstance.materials.get( 0 ).clear();
-        TextureAttribute diffuse = TextureAttribute.createDiffuse( IMG.WORLD_TEXTURE.getRegion() );
-        modelInstance.materials.get( 0 ).set( diffuse );
+        modelInstance.materials.get( 0 ).set( IMG.WORLD_TEXTURE.getDiffuse() );
 
         ModelInstance physicalInstance = levelAsset.getSimple();
 

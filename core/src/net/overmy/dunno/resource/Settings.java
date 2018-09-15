@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 
 import net.overmy.dunno.DEBUG;
+import net.overmy.dunno.logic.Inventory;
 
 /*
         Created by Andrey Mikheev on 05.06.2018
@@ -16,6 +17,7 @@ public enum Settings {
     MUSIC( Integer.TYPE ),
     VERT_SENS( Integer.TYPE ),
     HORIZ_SENS( Integer.TYPE ),
+    INVENTORY( String.class ),
 
     START_LOCATION( Integer.TYPE ),;
 
@@ -59,6 +61,7 @@ public enum Settings {
             Settings.SOUND.setInteger( 50 );
             Settings.VERT_SENS.setInteger( 25 );
             Settings.HORIZ_SENS.setInteger( 60 );
+            Settings.INVENTORY.setString( "" );
 
             Settings.START_LOCATION.setInteger( 0 );
         }

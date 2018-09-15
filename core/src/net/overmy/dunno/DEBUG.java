@@ -6,10 +6,11 @@ package net.overmy.dunno;
 */
 public final class DEBUG {
     public static boolean WINDOWS      = false;
-    public static boolean SETTINGS     = false;
+    public static boolean SETTINGS     = true;
     public static boolean ENGLISH_TEXT = false;
     public static boolean FPS          = true;
     public static boolean GAME_MASTER  = true;
+    public static boolean INVENTORY  = true;
 
     // 2d screen info
     public static boolean BASE_SCREEN = false;

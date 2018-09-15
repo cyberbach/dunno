@@ -2,6 +2,7 @@ package net.overmy.dunno.logic.objects;
 
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.utils.ImmutableArray;
+import com.badlogic.gdx.graphics.g3d.model.Node;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 
@@ -18,12 +19,28 @@ import net.overmy.dunno.resource.SoundAsset;
         Created by Andrey Mikheev on 12.06.2018
         Contact me → http://vk.com/id17317
 */
-public class NPCObject implements GameObject {
+public class NPCObject extends ConnectedObject implements GameObject {
     private Vector3                     position;
     private Entity                      entity;
     private ImmutableArray< NPCAction > actionArray;
     private SoundAsset                  walkSoundAsset;
     private ImmutableArray< Asset >     assets;
+
+    Node rightArmNode = null;
+
+    @Override
+    public void connect () {
+        super.connect();
+
+        // attach only model without physics
+        connectedInstance.nodes.get( 0 ).attachTo( rightArmNode );
+    }
+
+
+    @Override
+    public void disconnect () {
+        super.disconnect();
+    }
 
 
     public NPCObject ( float x, float y, float z,
@@ -34,6 +51,9 @@ public class NPCObject implements GameObject {
         Array< Asset > assetArray = new Array< Asset >();
         assetArray.add( npcModelAsset );
         assetArray.add( walkSound );
+
+        // FIXME
+        //connectedInstance
 
         this.position = new Vector3( x, y, z );
         this.assets = new ImmutableArray< Asset >( assetArray );
@@ -73,7 +93,13 @@ public class NPCObject implements GameObject {
         }
 
         ModelAsset modelAsset = (ModelAsset) assets.first();
+
         entity = NpcEntity.create( position, modelAsset, actionArray, walkSoundAsset );
+
+        // FIXME
+        // Здесь достаём нод руки игрока
+        //rightArmNode = modelInstance.getNode( "rightArm", true );
+
         AshleyWorld.getEngine().addEntity( entity );
     }
 

@@ -9,6 +9,8 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGeneratorLoader;
 import com.badlogic.gdx.graphics.g2d.freetype.FreetypeFontLoader;
 
+import net.overmy.dunno.logic.Inventory;
+
 /*
         Created by Andrey Mikheev on 04.06.2018
         Contact me → http://vk.com/id17317
@@ -37,6 +39,9 @@ public class Assets {
         ModelAsset.setManager( manager );
         MusicAsset.setManager( manager );
         SoundAsset.setManager( manager );
+
+        Inventory.init();
+        Inventory.loadFromSettings();
     }
 
 
@@ -61,6 +66,9 @@ public class Assets {
 
 
     public static void unload () {
+        Inventory.saveToSettings();
+        Inventory.dispose();
+
         FontAsset.unloadAll();
         IMG.unload();
         ModelAsset.unloadAll();
